@@ -320,7 +320,6 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
-  dotenv
   httparty
   json
   kamal

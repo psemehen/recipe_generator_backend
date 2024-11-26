@@ -28,7 +28,6 @@ gem "thruster", require: false
 gem "rack-cors"
 gem "httparty"
 gem "redis"
-gem "dotenv"
 gem "json"
 
 group :development, :test do
