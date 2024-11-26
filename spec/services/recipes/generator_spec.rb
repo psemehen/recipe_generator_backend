@@ -56,37 +56,43 @@ RSpec.describe Recipes::Generator do
     end
   end
 
-  describe "#generate_recipe" do
-    let(:api_response) do
-      {
-        "choices" => [
-          {
-            "message" => {
-              "content" => "Generated recipe content"
-            }
+describe "#generate_recipe" do
+  let(:api_response) do
+    {
+      "choices" => [
+        {
+          "message" => {
+            "content" => "Generated recipe content"
           }
-        ]
-      }.to_json
-    end
-
-    before do
-      stub_request(:post, Recipes::Generator::URL)
-        .to_return(status: 200, body: api_response, headers: {"Content-Type" => "application/json"})
-    end
-
-    it "calls the Groq API" do
-      generator.send(:generate_recipe)
-      expect(WebMock).to have_requested(:post, Recipes::Generator::URL)
-        .with(
-          headers: {
-            "Content-Type" => "application/json",
-            "Authorization" => "Bearer #{Rails.application.credentials.groq.fetch(:api_key)}"
-          }
-        )
-    end
-
-    it "returns the parsed recipe content" do
-      expect(generator.send(:generate_recipe)).to eq("Generated recipe content")
-    end
+        }
+      ]
+    }.to_json
   end
+
+  before do
+    stub_request(:post, Recipes::Generator::URL)
+      .with(
+        headers: {
+          "Content-Type" => "application/json",
+          "Authorization" => "Bearer fake_api_key"
+        }
+      )
+      .to_return(status: 200, body: api_response, headers: {"Content-Type" => "application/json"})
+  end
+
+  it "calls the Groq API" do
+    generator.send(:generate_recipe)
+    expect(WebMock).to have_requested(:post, Recipes::Generator::URL)
+      .with(
+        headers: {
+          "Content-Type" => "application/json",
+          "Authorization" => "Bearer fake_api_key"
+        }
+      )
+  end
+
+  it "returns the parsed recipe content" do
+    expect(generator.send(:generate_recipe)).to eq("Generated recipe content")
+  end
+end
 end
