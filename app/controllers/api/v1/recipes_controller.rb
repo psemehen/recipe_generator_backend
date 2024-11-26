@@ -20,7 +20,7 @@ class Api::V1::RecipesController < ApplicationController
 
   def create_recipe(ingredients)
     recipe = Recipes::Generator.new(ingredients).call
-    render json: { recipe: recipe }, status: :created
+    render json: {recipe: recipe}, status: :created
   end
 
   def recipe_params
