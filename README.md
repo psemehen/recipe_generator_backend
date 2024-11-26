@@ -1,24 +1,26 @@
-# README
+# Recipe Generator Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Ruby on Rails backend application with Groq AI integration for generating recipes based on provided ingredients.
 
-Things you may want to cover:
+## System Requirements
 
-* Ruby version
+* Ruby version: 3.3.6 
+* Rails version: 8.0.0 
+* Redis: Latest stable version
 
-* System dependencies
+## Setup
 
-* Configuration
+1. Clone the repository.
+2. Install dependencies:
+- ```bash
+  bundle install
+3. Add provided **master.key** into **config/** folder.
+4. Start the Redis server.
+5. Start the Rails server:
+- ```bash
+  bundle exec rails s
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Test suite
+1. Run Rspec for running specs:
+- ```bash
+  bundle exec rspec
