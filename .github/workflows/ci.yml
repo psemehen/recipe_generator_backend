@@ -48,5 +48,10 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set Rails environment variables
+        run: |
+          echo "RAILS_ENV=test" >> $GITHUB_ENV
+          echo "DISABLE_DATABASE_ENVIRONMENT_CHECK=1" >> $GITHUB_ENV
+
       - name: Run tests
         run: bundle exec rspec
